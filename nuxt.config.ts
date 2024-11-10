@@ -1,16 +1,14 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
-  shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
-    prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
-    componentDir: './components/ui'
+  router: {
+    base: '/udemy-aladia--test/',
   },
-
-  compatibilityDate: '2024-11-10'
-})
+  shadcn: {
+    // Prefix for all the imported component
+    prefix: '',
+    // Directory that the component lives in.
+    // @default "./components/ui"
+    componentDir: './components/ui',
+  },
+  compatibilityDate: '2024-11-10',
+});
