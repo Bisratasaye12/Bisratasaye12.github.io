@@ -1,34 +1,34 @@
-name: Deploy to GitHub Pages
+# name: Deploy to GitHub Pages
 
-permissions:
-  contents: write # Required to push to gh-pages
+# permissions:
+#   contents: write # Required to push to gh-pages
 
-on:
-  push:
-    branches:
-      - main # Make sure you're deploying from the correct branch
+# on:
+#   push:
+#     branches:
+#       - main # Make sure you're deploying from the correct branch
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16"
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: "16"
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Generate static files
-        run: npx nuxi generate
+#       - name: Generate static files
+#         run: npx nuxi generate
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Or use a personal access token if needed
-          publish_dir: .output/public
+#       - name: Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }} # Or use a personal access token if needed
+#           publish_dir: .output/public

@@ -1,8 +1,6 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
-  router: {
-    base: '/udemy-aladia--test/',
-  },
+  
   shadcn: {
     // Prefix for all the imported component
     prefix: '',
