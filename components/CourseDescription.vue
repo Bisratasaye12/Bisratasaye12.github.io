@@ -1,4 +1,5 @@
 <template>
+  <client-only>
     <div class="max-w-3xl mx-auto p-6 space-y-6 m-3 ml-3">
       <!-- Requirements Section -->
       <section>
@@ -32,11 +33,7 @@
               <ul class="space-y-3">
                 <li v-for="(item, index) in items" 
                     :key="item.title"
-                    class="flex gap-1"
-                    v-motion
-                    :initial="{ opacity: 0, y: 20 }"
-                    :enter="{ opacity: 1, y: 0 }"
-                    :transition="{ duration: 300, delay: index * 100 }">
+                    class="flex gap-1">
                   <span class="font-bold text-gray-900">{{ item.title }}</span>
                   <span class="text-gray-700">-</span>
                   <span class="text-gray-600">{{ item.description }}</span>
@@ -80,52 +77,56 @@
         </div>
       </section>
     </div>
-  </template>
+  </client-only>
+</template>
   
-  <script setup>
-  import { ref } from 'vue'
-  import { ChevronDownIcon } from 'lucide-vue-next'
-  
-  const isCollapsed = ref(true)
-  
-  const items = [
-    {
-      title: 'Compute and Storage',
-      description: 'AppEngine, Container Enginer (aka Kubernetes) and Compute Engine'
-    },
-    {
-      title: 'Big Data and Managed Hadoop',
-      description: 'Dataproc, Dataflow, BigTable, BigQuery, Pub/Sub'
-    },
-    {
-      title: 'TensorFlow',
-      description: 'on the Cloud - what neural networks and deep learning really are, how neurons work and how neural networks are trained'
-    },
-    {
-      title: 'DevOps stuff',
-      description: 'StackDriver logging, monitoring, cloud deployment manager'
-    },
-    {
-      title: 'Security',
-      description: 'Identity and Access Management, Identity-Aware proxying, OAuth, API Keys, service accounts'
-    },
-    {
-      title: 'Networking',
-      description: 'Virtual Private Clouds, shared VPCs, Load balancing at the network, transport and HTTP layer; VPN, Cloud Interconnect and CDN Interconnect'
-    },
-    {
-      title: 'Hadoop Foundations',
-      description: 'A quick look at the open-source cousins (Hadoop, Spark, Pig, Hive and HBase)'
-    }
-  ]
-  
-  const toggleCollapse = () => {
-    isCollapsed.value = !isCollapsed.value
+<script setup>
+import { ref, defineAsyncComponent } from 'vue'
+
+// Dynamically import ChevronDownIcon to make it SSR-compatible
+const ChevronDownIcon = defineAsyncComponent(() => import('lucide-vue-next').then(module => module.ChevronDownIcon))
+
+const isCollapsed = ref(true)
+
+
+const items = [
+  {
+    title: 'Compute and Storage',
+    description: 'AppEngine, Container Enginer (aka Kubernetes) and Compute Engine'
+  },
+  {
+    title: 'Big Data and Managed Hadoop',
+    description: 'Dataproc, Dataflow, BigTable, BigQuery, Pub/Sub'
+  },
+  {
+    title: 'TensorFlow',
+    description: 'on the Cloud - what neural networks and deep learning really are, how neurons work and how neural networks are trained'
+  },
+  {
+    title: 'DevOps stuff',
+    description: 'StackDriver logging, monitoring, cloud deployment manager'
+  },
+  {
+    title: 'Security',
+    description: 'Identity and Access Management, Identity-Aware proxying, OAuth, API Keys, service accounts'
+  },
+  {
+    title: 'Networking',
+    description: 'Virtual Private Clouds, shared VPCs, Load balancing at the network, transport and HTTP layer; VPN, Cloud Interconnect and CDN Interconnect'
+  },
+  {
+    title: 'Hadoop Foundations',
+    description: 'A quick look at the open-source cousins (Hadoop, Spark, Pig, Hive and HBase)'
   }
-  </script>
+]
+
+const toggleCollapse = () => {
+  isCollapsed.value = !isCollapsed.value
+}
+</script>
   
-  <style scoped>
-  .list-disc {
-    list-style-type: disc;
-  }
-  </style>
+<style scoped>
+.list-disc {
+  list-style-type: disc;
+}
+</style>
