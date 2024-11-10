@@ -1,9 +1,12 @@
 name: Deploy to GitHub Pages
 
+permissions:
+  contents: write # Required to push to gh-pages
+
 on:
   push:
     branches:
-      - main  # Make sure to use the branch you want to deploy from
+      - main # Make sure you're deploying from the correct branch
 
 jobs:
   deploy:
@@ -16,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Use the version of Node.js you're using in your project
+          node-version: "16"
 
       - name: Install dependencies
         run: npm install
@@ -27,5 +30,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Or use a personal access token if needed
           publish_dir: .output/public
